@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS staffs (
+    id SERIAL PRIMARY KEY,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    name TEXT NOT NULL,
+    role TEXT NOT NULL
+)
