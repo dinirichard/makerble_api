@@ -14,6 +14,7 @@ type application struct {
 	port int
 	jwtSecret string
 	models database.Models
+	DB        *sql.DB  
 }
 
 func main() {
@@ -32,6 +33,7 @@ func main() {
 		port: env.GetEnvInt("PORT", 8080),
 		jwtSecret: env.GetEnvString("JWT_SECRET", "some-secret-123456"),
 		models: models,
+		DB:        db,
 	}
 
 

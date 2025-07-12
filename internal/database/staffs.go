@@ -46,12 +46,12 @@ func (m *StaffModel) getStaff(query string, args ...interface{}) (*Staff, error)
 }
 
 func (m *StaffModel) Get(id int) (*Staff, error) {
-	query := "SELECT * FROM staffs WHERE id = $1"
+	query := "SELECT id, name, password, email, role FROM staffs WHERE id = $1"
 	return m.getStaff(query, id)
 }
 
 func (m *StaffModel) GetByEmail(email string) (*Staff, error) {
-	query := "SELECT * FROM staffs WHERE email = $1"
+	query := "SELECT id, name, password, email, role FROM staffs WHERE email = $1"
 	return m.getStaff(query, email)
 }
 
