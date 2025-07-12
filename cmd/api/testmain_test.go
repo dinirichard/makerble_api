@@ -6,8 +6,8 @@ import (
 	"os"
 	"testing"
 
-	"rest-api-in-gin/internal/database"
-	"rest-api-in-gin/internal/env"
+	"makerble_api/internal/database"
+	"makerble_api/internal/env"
 
 	_ "github.com/lib/pq"
 )

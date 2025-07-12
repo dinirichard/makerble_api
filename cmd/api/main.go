@@ -3,12 +3,22 @@ package main
 import (
 	"database/sql"
 	"log"
-	"rest-api-in-gin/internal/database"
-	"rest-api-in-gin/internal/env"
+	"makerble_api/internal/database"
+	"makerble_api/internal/env"
+
+	_ "makerble_api/docs"
 
 	_ "github.com/joho/godotenv/autoload"
 	_ "github.com/lib/pq"
 )
+
+// @title Makerble rest api
+// @version 1.0
+// @description A rest API in Go using Gin framework
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
+// @description Enter your bearer token in the format **Bearer &lt;token&gt;**
 
 type application struct {
 	port int

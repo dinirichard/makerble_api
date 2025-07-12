@@ -1,0 +1,163 @@
+definitions:
+  database.Patient:
+    properties:
+      address:
+        minLength: 5
+        type: string
+      bloodtype:
+        type: string
+      doctor_id:
+        type: integer
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        minLength: 3
+        type: string
+    required:
+    - address
+    - email
+    - name
+    type: object
+  database.Staff:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      role:
+        type: string
+    type: object
+  main.loginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        minLength: 5
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  main.loginResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  main.registerPatientRequest:
+    properties:
+      address:
+        minLength: 5
+        type: string
+      email:
+        type: string
+      name:
+        minLength: 3
+        type: string
+    required:
+    - address
+    - email
+    - name
+    type: object
+  main.registerStaffRequest:
+    properties:
+      email:
+        type: string
+      name:
+        minLength: 3
+        type: string
+      password:
+        minLength: 5
+        type: string
+      role:
+        type: string
+    required:
+    - email
+    - name
+    - password
+    - role
+    type: object
+info:
+  contact: {}
+  description: A rest API in Go using Gin framework
+  title: Makerble rest api
+  version: "1.0"
+paths:
+  /api/v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Logs in a staff
+      parameters:
+      - description: Staff
+        in: body
+        name: staff
+        required: true
+        schema:
+          $ref: '#/definitions/main.loginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.loginResponse'
+      summary: Logs in a staff
+      tags:
+      - auth
+  /api/v1/auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new patient
+      parameters:
+      - description: Patient
+        in: body
+        name: patient
+        required: true
+        schema:
+          $ref: '#/definitions/main.registerPatientRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/database.Patient'
+      security:
+      - BearerAuth: []
+      summary: Registers a new patient
+      tags:
+      - auth
+  /api/v1/auth/staff/register:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new staff
+      parameters:
+      - description: Staff
+        in: body
+        name: staff
+        required: true
+        schema:
+          $ref: '#/definitions/main.registerStaffRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/database.Staff'
+      summary: Registers a new staff
+      tags:
+      - auth
+securityDefinitions:
+  BearerAuth:
+    description: Enter your bearer token in the format **Bearer &lt;token&gt;**
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

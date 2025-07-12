@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
+	"makerble_api/internal/database"
 	"net/http"
-	"rest-api-in-gin/internal/database"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -33,6 +33,16 @@ type loginResponse struct {
 	Token string `json:"token"`
 }
 
+// Login logs in a staffs
+//
+//	@Summary		Logs in a staff
+//	@Description	Logs in a staff
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//	@Param			staff	body	loginRequest	true	"Staff"
+//	@Success		200	{object}	loginResponse
+//	@Router			/api/v1/auth/login [post]
 func (app *application) login(c *gin.Context) {
 	var auth loginRequest
 	if err := c.ShouldBindJSON(&auth); err != nil {
@@ -74,6 +84,16 @@ func (app *application) login(c *gin.Context) {
 
 }
 
+// RegisterPatient 	registers a new patient
+// @Summary			Registers a new patient
+// @Description		Registers a new patient
+// @Tags			auth
+// @Accept			json
+// @Produce			json
+// @Param			patient	body		registerPatientRequest	true	"Patient"
+// @Success			201	{object}	database.Patient
+// @Router			/api/v1/auth/register [post]
+//	@Security		BearerAuth
 func (app *application) registerPatient(c *gin.Context) {
 	var register registerPatientRequest
 
@@ -107,6 +127,15 @@ func (app *application) registerPatient(c *gin.Context) {
 
 }
 
+// RegisterStaff 	registers a new staff
+// @Summary			Registers a new staff
+// @Description		Registers a new staff
+// @Tags			auth
+// @Accept			json
+// @Produce			json
+// @Param			staff	body		registerStaffRequest	true	"Staff"
+// @Success			201	{object}	database.Staff
+// @Router			/api/v1/auth/staff/register [post]
 func (app *application) registerStaff(c *gin.Context) {
 	var register registerStaffRequest
 

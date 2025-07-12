@@ -30,6 +30,15 @@ func (m *PatientModel) Insert(patient *Patient) error {
 	return m.DB.QueryRowContext(ctx, query, patient.Email, patient.Name, patient.Address).Scan(&patient.Id)
 }
 
+// GetPatients returns all patients
+//
+//	@Summary		Returns all patients
+//	@Description	Returns all patients
+//	@Tags			patients
+//	@Accept			json
+//	@Produce		json
+//	@Success		200		{object}	[]database.Patient
+//	@Router			/api/v1/patients [get]
 func (m *PatientModel) GetAll() ([]*Patient, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
@@ -64,6 +73,16 @@ func (m *PatientModel) GetAll() ([]*Patient, error) {
 
 }
 
+// GetPatient returns a single patient
+//
+//	@Summary		Returns a single patient
+//	@Description	Returns a single patient
+//	@Tags			patients
+//	@Accept			json
+//	@Produce		json
+//	@Param			id	path		int	true	"Patient ID"
+//	@Success		200	{object}	database.Patient
+//	@Router			/api/v1/patients/{id} [get]
 func (m *PatientModel) Get(id int) (*Patient, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
@@ -84,6 +103,18 @@ func (m *PatientModel) Get(id int) (*Patient, error) {
 	return &patient, nil
 }
 
+// UpdatePatient updates an existing patient
+//
+//	@Summary		Updates an existing patient
+//	@Description	Updates an existing patient
+//	@Tags			patients
+//	@Accept			json
+//	@Produce		json
+//	@Param			id	path		int	true	"Patient ID"
+//	@Param			patient	body		database.Patient	true	"Patient"
+//	@Success		200	{object}	database.Patient
+//	@Router			/api/v1/patients/{id} [put]
+//	@Security		BearerAuth
 func (m *PatientModel) Update(patient *Patient) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
@@ -98,6 +129,17 @@ func (m *PatientModel) Update(patient *Patient) error {
 	return nil
 }
 
+// DeletePatient deletes an existing patient
+//
+//	@Summary		Deletes an existing patient
+//	@Description	Deletes an existing patient
+//	@Tags			patients
+//	@Accept			json
+//	@Produce		json
+//	@Param			id	path		int	true	"Patient ID"
+//	@Success		204
+//	@Router			/api/v1/patients/{id} [delete]
+//	@Security		BearerAuth
 func (m *PatientModel) Delete(id int) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()

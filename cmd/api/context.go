@@ -1,7 +1,7 @@
 package main
 
 import (
-	"rest-api-in-gin/internal/database"
+	"makerble_api/internal/database"
 
 	"github.com/gin-gonic/gin"
 )

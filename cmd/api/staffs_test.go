@@ -8,7 +8,8 @@ import (
 	"strconv"
 	"testing"
 
-	"rest-api-in-gin/internal/database"
+	"makerble_api/internal/database"
+
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

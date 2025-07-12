@@ -1,8 +1,8 @@
 package main
 
 import (
+	"makerble_api/internal/database"
 	"net/http"
-	"rest-api-in-gin/internal/database"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
