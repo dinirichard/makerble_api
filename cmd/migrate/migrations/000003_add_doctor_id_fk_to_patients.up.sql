@@ -1,0 +1,5 @@
+ALTER TABLE patients
+ADD CONSTRAINT fk_doctor
+FOREIGN KEY (doctor_id)
+REFERENCES staffs(id)
+ON DELETE SET NULL;
