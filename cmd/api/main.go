@@ -18,7 +18,6 @@ type application struct {
 }
 
 func main() {
-	// fmt.Println("Hello")
 
 	dsn := "host=localhost user=postgres password=postgres dbname=makerble port=5432 sslmode=disable"
 	db, err := sql.Open("postgres", dsn)

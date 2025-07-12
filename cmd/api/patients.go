@@ -105,7 +105,7 @@ func (app *application) deletePatient(c *gin.Context) {
 	c.JSON(http.StatusNoContent, nil )
 }
 
-func (app *application) getAttendeesForEvent(c *gin.Context) {
+func (app *application) getDoctorForPatient(c *gin.Context) {
 	// id, err := strconv.Atoi(c.Param("id"))
 	// if err != nil {
 	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid event id"})
